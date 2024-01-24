@@ -1,5 +1,6 @@
 "use client";
 
+import ArticleItem from "@/components/ArticleItem";
 import { useArticles } from "@/hooks/useArticles";
 import { supabase } from "@/lib/supabase";
 import { useEffect } from "react";
@@ -13,30 +14,27 @@ export default function Home() {
         {
           event: "*",
           schema: "public",
-          table: "articles",
+          table: "votes",
         },
         (payload: any) => {
-          console.log(payload);
+           getArticles();
         }
       )
     .subscribe();
   
-   const unsubscribeFromArticles = () => {
-     supabase.removeChannel(subscribedChannel);
-   };
+   
 
   
   useEffect(() => {
     getArticles();
   }, []);
   return (
-    <div>
-      <button onClick={() => unsubscribeFromArticles()}>Unsubscribe</button>
-      <ul>
-        {articles.map((article: any, key: number) => (
-          <li key={key}>{article.title}</li>
-        ))}
-      </ul>
+    <div className="container mx-auto my-8">
+      <div className="grid gap-4 px-12">
+        {articles.map((article: any, key: number) => {
+          return <ArticleItem key={key} article={article} />;
+        })}
+      </div>
     </div>
   );
 }
