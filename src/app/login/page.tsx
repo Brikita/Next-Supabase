@@ -1,17 +1,11 @@
-import React from "react";
-
-type Props = {};
-
-const Login = (props: Props) => {
+export default function Login() {
   return (
     <form action="/auth/login" method="post">
       <label htmlFor="email">Email</label>
-      <input name="email"  />
+      <input value="test@gmail.com" name="email" />
       <label htmlFor="password">Password</label>
-      <input type="password" name="password" id="password" />
-      <button>Sign In</button>
+      <input value="testsix" type="password" name="password" />
+      <button>Sign in</button>
     </form>
   );
-};
-
-export default Login;
+}
