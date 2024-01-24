@@ -13,8 +13,10 @@ export const useArticles = () => {
     }
   };
 
+ 
+
   return {
     articles,
-    getArticles,
+    getArticles
   };
 };
